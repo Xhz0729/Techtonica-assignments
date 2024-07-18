@@ -1,6 +1,11 @@
 p {
-    color: blue;
+    color:grey;
 }
 body {
     background-color: lightblue;
 }
+h1, h2 {
+    color:rgb(47, 47, 46);
+    font-family: "Pacifico", cursive;
+}
+
