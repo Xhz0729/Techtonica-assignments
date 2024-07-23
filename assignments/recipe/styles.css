@@ -1,11 +1,15 @@
+
 p {
     color:grey;
 }
 body {
     background-color: lightblue;
 }
+* {
+    font-family: "Nunito", sans-serif;
+}
 h1, h2 {
-    color:rgb(47, 47, 46);
+    color:rgb(170, 130, 67);
     font-family: "Pacifico", cursive;
 }
 img, .description {
@@ -14,10 +18,14 @@ img, .description {
 .left {
     width: 600px;
     float: left;
-    margin-top: 25px;
+    margin-top: 18px;
 }
 .right {
     width: 600px;
     float: left;
     margin-left: 30px;
 }
+.top, .left{
+    padding-left: 25px;
+}
+
