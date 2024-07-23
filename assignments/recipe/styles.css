@@ -16,14 +16,13 @@ img, .description {
     width: 600px;
 }
 .left {
-    width: 600px;
+    width: 50%;
     float: left;
     margin-top: 18px;
 }
 .right {
-    width: 600px;
-    float: left;
-    margin-left: 30px;
+    width: 50%;
+    float: right;
 }
 .top, .left{
     padding-left: 25px;
