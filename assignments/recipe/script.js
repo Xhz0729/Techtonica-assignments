@@ -39,10 +39,9 @@ ingredientEles.forEach(function(item, index) {
     if (checkbox.checked) {
        label.classList.add('checked');
     } else {
-       lable.classList.remove('checked');
+       label.classList.remove('checked');
     }
   });
-    
 });
 
 

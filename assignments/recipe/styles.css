@@ -31,11 +31,11 @@ img, .description {
 .checked {
     text-decoration: line-through;
 }
-ul {
+ul, ol{
     list-style-type: none;
 }
-/* Extra Small Devices (up to 390px) */
-@media screen and (max-width: 390px) {
+/* Small Device (up to 430px), eg iphone 14 pro */
+@media screen and (max-width: 430px) {
     body {
       background-color: lightgrey;
     }
@@ -60,3 +60,40 @@ ul {
         text-align: center;
     }
   }
+  
+  /* Medium Device (greater than 767px and less than 1025px), eg ipad mini & ipad pro */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    body {
+      background-color: rgb(247, 214, 219);
+    }
+    .left, .right {
+        float: none;
+        width: 80%;
+
+    }
+    img, .description {
+        width: 100%;  
+        margin: 10px auto;
+    }
+    .description {
+        text-align: justify;
+        padding: 10px;
+    }
+    .top, .left {
+        margin: 0 auto;
+        padding-left: 0 ;
+    } 
+    h1 {
+        color: rgb(140, 203, 224);
+        text-align: center;
+    }
+    p {
+        color: darkgray ;
+    }
+    ul {
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+  }
+  /* Large Device (greater than 1025px), eg mac screen */
+  
