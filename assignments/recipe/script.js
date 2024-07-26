@@ -33,4 +33,12 @@ ingredientEles.forEach(function(item, index) {
   // Append the checkbox and label to the list item
   item.appendChild(checkbox);
   item.appendChild(label);
+  // adding a strikethrough by adding checked eventListener
+  checkbox.addEventListener('click', function() {
+    if (checkbox.checked) {
+        item.classList.add('checked');
+    } else {
+      item.classList.remove('checked');
+    }
+  });
 });

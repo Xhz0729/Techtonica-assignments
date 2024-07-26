@@ -26,4 +26,7 @@ img, .description {
 .top, .left{
     padding-left: 25px;
 }
-
+.checked {
+    text-decoration: line-through;
+  }
+  
