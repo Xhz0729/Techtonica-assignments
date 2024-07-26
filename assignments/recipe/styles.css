@@ -1,5 +1,5 @@
 p {
-    color:grey;
+    color: grey;
 }
 body {
     background-color: lightblue;
@@ -8,12 +8,14 @@ body {
     font-family: "Nunito", sans-serif;
 }
 h1, h2 {
-    color:rgb(170, 130, 67);
+    color: rgb(170, 130, 67);
     font-family: "Pacifico", cursive;
 }
 img, .description {
     width: 50%;
+
 }
+
 .left {
     width: 50%;
     float: left;
@@ -21,12 +23,40 @@ img, .description {
 }
 .right {
     width: 50%;
-    float: left;
+    float: right;
 }
-.top, .left{
+.top, .left {
     padding-left: 25px;
 }
 .checked {
     text-decoration: line-through;
+}
+ul {
+    list-style-type: none;
+}
+/* Extra Small Devices (up to 390px) */
+@media screen and (max-width: 390px) {
+    body {
+      background-color: lightgrey;
+    }
+    .left, .right {
+        float: none;
+        width: 80%;
+
+    }
+    img, .description {
+        width: 100%;  
+        margin: 10px auto;
+    }
+    .description {
+        text-align: justify;
+        padding: 10px;
+    }
+    .top, .left {
+        margin: 0 auto;
+        padding-left: 0 ;
+    } 
+    h1 {
+        text-align: center;
+    }
   }
-  
