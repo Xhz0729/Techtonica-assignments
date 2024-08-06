@@ -21,12 +21,17 @@ class Event {
     
     // searchTickets
     searchTickets(min, max) {
-        let eligibleTicket = [];
-        this.availableTickets.forEach((ticket) => {
-            if (ticket.price >= min && ticket.price <= max) {
-                eligibleTicket.push(ticket);
-            } 
+        // let eligibleTicket = [];
+        // this.availableTickets.forEach((ticket) => {
+        //     if (ticket.price >= min && ticket.price <= max) {
+        //         eligibleTicket.push(ticket);
+        //     } 
+        // });
+        // use filter to do it instead of for loop
+        let eligibleTicket = this.availableTickets.filter(ticket => {
+            return ticket.price >= min && ticket.price <= max;
         });
+    
         if (eligibleTicket.length === 0) {
             return 'No tickets available.';
         }
