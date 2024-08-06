@@ -81,10 +81,20 @@ console.log(eventArray);
 document.addEventListener('DOMContentLoaded', () => {
     let liEles = '';
     eventArray.forEach((obj) => {
-        liEles += `<li>${obj.name} - ${obj.description} - ${obj.allTickets()}</li> `
+        liEles += `<li>${obj.name} - ${obj.description} - ${obj.allTickets()}</li>`
 
     });
     let ulEle = document.querySelector('#event');
+    ulEle.innerHTML = liEles;
+})
+
+// display searched tickets
+document.addEventListener('DOMContentLoaded', () => {
+    let liEles = '';
+    eventArray.forEach((obj) => {
+        liEles += `<li>${obj.name} - ${obj.description} - ${obj.searchTickets(20, 45)}</li>`
+    });
+    let ulEle = document.querySelector('#eventWithEligibleTicket');
     ulEle.innerHTML = liEles;
 })
 
