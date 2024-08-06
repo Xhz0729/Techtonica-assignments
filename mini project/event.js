@@ -76,7 +76,7 @@ console.log(eventArray);
 document.addEventListener('DOMContentLoaded', () => {
     let liEles = '';
     eventArray.forEach((obj) => {
-        liEles += `<li>${obj.name} - ${obj.description}</li> `
+        liEles += `<li>${obj.name} - ${obj.description} - ${obj.allTickets()}</li> `
 
     });
     let ulEle = document.querySelector('#event');
@@ -97,17 +97,17 @@ eventObj2.addAvailableTickets('Reserved seating', 60);
 eventObj3.addAvailableTickets('General admission', 25);
 eventObj3.addAvailableTickets('VIP', 60);
 
-// display three event objects info
+// test for display three event objects info
 eventArray.forEach(event => {
     console.log(`${event.name} - ${event.description} - ${event.allTickets()}`);
 });
 
-// display the matched tickets, price between 10 to 20 instead of all tickets
+// test for display the matched tickets, price between 10 to 20 instead of all tickets
 eventArray.forEach(event => {
     console.log(`${event.name} - ${event.description} - ${event.searchTickets(10, 20)}`);
 })
 
-// display the matched tickets, price between 25 to 60 instead of all tickets
+// test for display the matched tickets, price between 25 to 60 instead of all tickets
 eventArray.forEach(event => {
     console.log(`${event.name} - ${event.description} - ${event.searchTickets(25, 60)}`);
 })
