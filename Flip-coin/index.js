@@ -1,8 +1,6 @@
 let coin = document.querySelector('#coin');
 let playBtn = document.querySelector('#playBtn');
 let resetBtn = document.querySelector('#resetBtn');
-let headsCnt = document.getElementById('headsCount');
-let tailsCnt = document.getElementById('tailsCount')
 
 let heads = 0;
 let tails = 0;
