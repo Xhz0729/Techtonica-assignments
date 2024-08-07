@@ -88,5 +88,21 @@ h1 {
 #tailCount {
     margin-left: 50%;
 }
+ 
+/* style the btn */
+.btn {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+}
 
+button{
+    width: 120px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: rgb(55, 55, 55);
+    box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+}
 
