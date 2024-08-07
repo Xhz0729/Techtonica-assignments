@@ -47,6 +47,35 @@ h1 {
     transform: rotateX(180deg);
 }
 
+/* add flip animation to heads */
+@keyframes heads-spin {
+    0%{
+        transform: rotateX(0);
+    }
+    100%{
+        transform: rotateX(2340deg);
+    }
+}
+/* add flip animation to tails */
+@keyframes heads-tails {
+    0%{
+        transform: rotateX(0);
+    }
+    100%{
+        transform: rotateX(2160deg);
+    }
+}
+
+/* add flip animation */
+@keyframes heads-spin {
+    0%{
+        transform: rotateX(0);
+    }
+    100%{
+        transform: rotateX(2160deg);
+    }
+}
+
 /* style count part */
 .count {
     display: flex;
@@ -59,6 +88,5 @@ h1 {
 #tailCount {
     margin-left: 50%;
 }
-
 
 
