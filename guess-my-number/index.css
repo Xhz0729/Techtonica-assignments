@@ -14,7 +14,7 @@ h1 {
   font-size: 2.5rem;
   color: #008000;
   padding-top: 10px;
-  margin: 20px;
+  margin: 15px;
   text-align: center;
 }
 
@@ -47,4 +47,19 @@ section {
   display: block;
   font-weight: bolder;
   padding-bottom: 10px;
+}
+
+/* style button */
+button, 
+.guess-part #submit {
+    padding: 10px 15px;
+    background-color: #008000;
+    color:antiquewhite;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover,
+.guess-part #submit:hover {
+    background-color: #31c231;
 }
