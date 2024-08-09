@@ -50,16 +50,25 @@ section {
 }
 
 /* style button */
-button, 
+button,
 .guess-part #submit {
-    padding: 10px 15px;
-    background-color: #008000;
-    color:antiquewhite;
-    font-size: 1.2em;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px 15px;
+  background-color: #008000;
+  color: antiquewhite;
+  font-size: 1.2em;
+  border-radius: 5px;
+  cursor: pointer;
 }
 button:hover,
 .guess-part #submit:hover {
-    background-color: #31c231;
+  background-color: #31c231;
+}
+
+/* style user input */
+#userInput {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid lightseagreen;
 }
