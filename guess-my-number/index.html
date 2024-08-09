@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guess My Number</title>
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
     <section id="description">
-        <h1>Welcome to Guess My Number Game</h1>
+        <h1>Welcome to Guess Number Game</h1>
     </section>
 
-    <section>
+    <section class="range">
         <label for="numberRange">Please choose the range of the number:</label>
         <select id="numberRange">
             <option id="option1" value="0-100">0~100</option>
             <option id="option2" value="100-1000">100~1000</option>
-            <option id="option3" value="'1000-5000">1000~5000</option>
+            <option id="option3" value="1000-5000">1000~5000</option>
             <option id="option4" value="5000-10000">5000~10000</option>
         </select>
     </section>
@@ -23,14 +24,20 @@
     <section>
         <h2>Please hit the button to generate a random number</h2>
         <button id="generateNumber">Generate Random Number</button>
+        <p id="target"></p>
     </section>
     
     <section class="guess-part">
         <form>
-            <label for="user-input">Please make your guess below:</label>
-            <input type="text" id="user-input"></input>
+            <label for="userInput">Please make your guess below:</label>
+            <input type="text" id="userInput"></input>
             <input type="button" id="submit" value="submit"></button>
         </form>
     </section>
+    <p id="count">Guesses made so far: 0</p>
+    <p id="guessedNumbers">Numbers guessed so far: </p>
+    <p id="feedback"></p>
+
+    <script src="./index.js"></script>
 </body>
 </html>
