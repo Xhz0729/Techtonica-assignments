@@ -72,3 +72,21 @@ button:hover,
   border-radius: 5px;
   border: 1px solid lightseagreen;
 }
+
+/* style feedback, track of count and numbers */
+#feedback {
+  color: #d2122e;
+  font-weight: bolder;
+  font-size: 2.5em;
+}
+
+#count,
+#guessedNumbers {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#guessedNumbers {
+  color: #2196f3;
+  font-style: italic;
+}
