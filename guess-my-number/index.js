@@ -1,6 +1,7 @@
 /* generate random number */
 let randomNum;
 let guessCnt = 0;
+let guessedNumbers = [];
 
 const randomNumBtn = document.getElementById("generateNumber");
 randomNumBtn.addEventListener("click", function () {
@@ -32,6 +33,9 @@ randomNumBtn.addEventListener("click", function () {
   // reset my guess count
   guessCnt = 0;
   document.getElementById('count').textContent = "Guesses made so far: 0."
+  // reset my guessed number
+  guessedNumbers = [];
+  document.getElementById('guessedNumbers').textContent = "Numbers guessed so far: "
 
 });
 
@@ -47,7 +51,7 @@ submitBtn.addEventListener("click", function () {
   }
   if (guess < randomNum) {
     feedback.textContent = "Too low!";
-    guessCnt++;
+    guessCnt++; 
   } else if (guess > randomNum) {
     feedback.textContent = "Too high!";
     guessCnt++;
@@ -56,4 +60,10 @@ submitBtn.addEventListener("click", function () {
     return;
   }
   document.getElementById('count').textContent = `Guesses made so far: ${guessCnt}.`;
+
+  // display numbers have been guessed
+  if (guess !== randomNum) {
+    guessedNumbers.push(guess);
+    document.getElementById('guessedNumbers').textContent = `Numbers guessed so far: ${guessedNumbers.join(', ')}`;
+  }
 });
