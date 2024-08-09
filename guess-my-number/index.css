@@ -33,9 +33,18 @@ section {
   text-align: center;
 }
 
+/* style dropdown */
 #numberRange {
-    width: 450px;
-    padding: 10px;
-    border: 1px solid lightseagreen;
-    border-radius: 5px;
+  width: 450px;
+  padding: 10px;
+  border: 1px solid lightseagreen;
+  border-radius: 5px;
+}
+
+/* style two labels */
+.range label,
+.guess-part label {
+  display: block;
+  font-weight: bolder;
+  padding-bottom: 10px;
 }
