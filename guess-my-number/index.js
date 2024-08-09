@@ -27,16 +27,23 @@ randomNumBtn.addEventListener("click", function () {
   }
   // generate the random number btw min and max
   randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
-  document.getElementById("target").textContent = 'Random number generated, please start guessing';
+  document.getElementById("target").textContent =
+    "Random number generated, please start guessing";
+
   // clear my past game feedback
-  document.getElementById('feedback').textContent = '';
+  document.getElementById("feedback").textContent = "";
+
+  // reset my user input
+  document.getElementById("userInput").value = "";
+
   // reset my guess count
   guessCnt = 0;
-  document.getElementById('count').textContent = "Guesses made so far: 0."
+  document.getElementById("count").textContent = "Guesses made so far: 0.";
+
   // reset my guessed number
   guessedNumbers = [];
-  document.getElementById('guessedNumbers').textContent = "Numbers guessed so far: "
-
+  document.getElementById("guessedNumbers").textContent =
+    "Numbers guessed so far: ";
 });
 
 /* compare the input with random number */
@@ -51,7 +58,7 @@ submitBtn.addEventListener("click", function () {
   }
   if (guess < randomNum) {
     feedback.textContent = "Too low!";
-    guessCnt++; 
+    guessCnt++;
   } else if (guess > randomNum) {
     feedback.textContent = "Too high!";
     guessCnt++;
@@ -59,11 +66,15 @@ submitBtn.addEventListener("click", function () {
     feedback.textContent = "You win!";
     return;
   }
-  document.getElementById('count').textContent = `Guesses made so far: ${guessCnt}.`;
+  document.getElementById(
+    "count"
+  ).textContent = `Guesses made so far: ${guessCnt}.`;
 
   // display numbers have been guessed
   if (guess !== randomNum) {
     guessedNumbers.push(guess);
-    document.getElementById('guessedNumbers').textContent = `Numbers guessed so far: ${guessedNumbers.join(', ')}`;
+    document.getElementById(
+      "guessedNumbers"
+    ).textContent = `Numbers guessed so far: ${guessedNumbers.join(", ")}`;
   }
 });
