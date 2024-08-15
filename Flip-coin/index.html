@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip Coin</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <h1>COIN FLIP SIMU</h1>
+    <section class="container">
+        <section id="coin">
+            <div id="heads">
+                <img src="/heads.png" alt="head">
+            </div>
+            <div id="tails">
+                <img src="tails.png" alt="tail">
+            </div>
+        </section>
+        <section class="count">
+            <p id="headsCount">Heads: 0</p>
+            <p id="tailsCount">Tails: 0</p>
+        </section>
+        <section class="btn">
+            <button id="playBtn">Flip</button>
+            <button id="resetBtn">Reset</button>
+        </section>
+    </section>
+    <audio id="flipSound" src="coin-flip-sound.mp3"></audio>
+    <script src="/index.js"></script>
+</body>
+</html>
