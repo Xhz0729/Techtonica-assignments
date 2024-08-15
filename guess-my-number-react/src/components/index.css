@@ -1,0 +1,114 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #008000;
+  padding-top: 10px;
+  margin: 15px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Section Styles */
+section {
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+/* style dropdown */
+#numberRange {
+  width: 450px;
+  padding: 10px;
+  border: 1px solid lightseagreen;
+  border-radius: 5px;
+}
+
+/* style two labels */
+.range label,
+.guess-part label {
+  display: block;
+  font-weight: bolder;
+  padding-bottom: 10px;
+}
+
+/* style button */
+button,
+.guess-part #submit {
+  padding: 10px 15px;
+  background-color: #008000;
+  color: antiquewhite;
+  font-size: 1.2em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover,
+.guess-part #submit:hover {
+  background-color: #31c231;
+}
+
+/* style user input */
+#userInput {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid lightseagreen;
+}
+
+/* style feedback, track of count and numbers */
+#feedback {
+  color: #d2122e;
+  font-weight: bolder;
+  font-size: 2.5em;
+}
+
+#count,
+#guessedNumbers {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#guessedNumbers {
+  color: #2196f3;
+  font-style: italic;
+}
+
+#target {
+  margin-top: 20px;
+  font-weight: bolder;
+  color: #d2122e;
+}
+
+/* add animation for h1 */
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  animation: fadeSlideIn 3s ease-in-out;
+}
