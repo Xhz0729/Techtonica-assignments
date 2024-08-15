@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Range from "./Range";
 import GenerateNumber from "./GenerateNumber";
+import UserInput from "./UserInput";
+import'./index.css'
 
 const Display: React.FC = () => {
   // range state
@@ -56,13 +58,48 @@ const Display: React.FC = () => {
     setUserInput("");
   };
 
+  // handle user input
+  const submitBtn = () => {
+    const input = parseInt(userInput);
+    if (isNaN(input)) {
+      setFeedback("Please enter a valid number");
+    }
+    if (randomNum !== null) {
+      if (input < randomNum) {
+        setFeedback("Too low!");
+        setGuessCnt(guessCnt + 1);
+      } else if (input > randomNum) {
+        setFeedback("Too high!");
+        setGuessCnt(guessCnt + 1);
+      } else {
+        setFeedback("You win!");
+        return;
+      }
+      if (input !== randomNum) {
+        setGuessedNumbers([...guessedNumbers, input]);
+      }
+    }
+  };
+
   return (
-    <div>
+    <div className="game-container">
+      <section id="description">
+        <h1>Welcome to Guess Number Game</h1>
+      </section>
       <Range range={range} setRange={setRange} />
       <GenerateNumber
         generateRandomNumber={generateRandomNumber}
         feedback={feedback}
       />
+      <UserInput
+        userInput={userInput}
+        setUserInput={setUserInput}
+        submitBtn={submitBtn}
+      />
+      <p id="count">Guesses made so far: {guessCnt}</p>
+      <p id="guessedNumbers">
+        Numbers guessed so far: {guessedNumbers.join(", ")}
+      </p>
     </div>
   );
 };
