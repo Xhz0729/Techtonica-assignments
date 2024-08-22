@@ -27,3 +27,18 @@ export const addMovie = async (req, res) => {
     res.send(err.message);
   }
 };
+
+// delete a movive
+export const deleteMovie = async (req, res) => {
+  // get the movie id
+  const { id } = req.params;
+  try {
+    const result = await pool.query(
+      "DELETE FROM movies WHERE id= $1 RETURNING *",
+      [id]
+    );
+    res.send(`Movie with ID ${id} has been deleted`);
+  } catch (err) {
+    res.send(err.message);
+  }
+};
