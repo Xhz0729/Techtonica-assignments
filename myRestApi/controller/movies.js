@@ -3,8 +3,20 @@ import pool from "../db.js";
 // get all movies
 export const getMovies = async (req, res) => {
   try {
-    const allMovies = await pool.query("SELECT * FROM movies");
+    const allMovies = await pool.query("SELECT * FROM movies ORDER BY id ASC ");
     res.json(allMovies.rows);
+  } catch (err) {
+    res.send(err.message);
+  }
+};
+
+// get movie by id
+export const getMovieById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await pool.query("SELECT * FROM movies WHERE id=$1", [id]);
+    // Send back the movie data
+    res.json(result.rows[0]);
   } catch (err) {
     res.send(err.message);
   }

@@ -2,13 +2,17 @@ import express from "express";
 const router = express.Router();
 import {
   getMovies,
+  getMovieById,
   addMovie,
   deleteMovie,
   updateMovie,
 } from "../controller/movies.js";
 
-// GET all movies
+// Get all movies
 router.get("/", getMovies);
+
+// Get movie by id
+router.get("/:id", getMovieById);
 
 // Add a new movie
 router.post("/", addMovie);
