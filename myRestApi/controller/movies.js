@@ -42,3 +42,19 @@ export const deleteMovie = async (req, res) => {
     res.send(err.message);
   }
 };
+
+// update a movie
+export const updateMovie = async (req, res) => {
+  const { name, genre, publish_year, rating } = req.body;
+  // get the movie id
+  const { id } = req.params;
+  try {
+    const result = await pool.query(
+      "UPDATE movies SET name=$1, genre=$2, publish_year=$3, rating=$4 WHERE id= $5 RETURNING *",
+      [name, genre, publish_year, rating, id]
+    );
+    res.send(`Movie with ID ${id} has been updated`);
+  } catch (err) {
+    res.send(err.message);
+  }
+};
