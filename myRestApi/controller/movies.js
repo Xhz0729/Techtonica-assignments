@@ -1,10 +1,29 @@
 import pool from "../db.js";
 
-export const getMovies = async (req, res, next) => {
+// get all movies
+export const getMovies = async (req, res) => {
   try {
     const allMovies = await pool.query("SELECT * FROM movies");
     res.json(allMovies.rows);
   } catch (err) {
-    next(err);
+    res.send(err.message);
+  }
+};
+
+// add a new movie
+export const addMovie = async (req, res) => {
+  const { name, genre, publish_year, rating } = req.body;
+  try {
+    // Insert the new movie into the database
+    const result = await pool.query(
+      "INSERT INTO movies (name, genre, publish_year, rating) VALUES ($1, $2, $3, $4) RETURNING *",
+      [name, genre, publish_year, rating]
+    );
+
+    const newMovie = result.rows[0]; // Get the newly inserted movie
+
+    res.send(`Movie with the name "${newMovie.name}" added to the database`);
+  } catch (err) {
+    res.send(err.message);
   }
 };
