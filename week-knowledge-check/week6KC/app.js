@@ -2,11 +2,14 @@ import express from "express";
 // const express = require("express");
 import fetch from "node-fetch";
 // const fetch = require("node-fetch");
+import dotenv from "dotenv";
+dotenv.config();
+
 const app = express();
 const PORT = 3000;
 
 // Replace 'YOUR_OAUTH_TOKEN' with your actual OAuth token
-const oauthToken = "LSFH5JRYIMAAQALOGHJV";
+const oauthToken = process.env.OAUTH_TOKEN;
 
 // helper function to fetch data
 constFetchData = async (url) => {
