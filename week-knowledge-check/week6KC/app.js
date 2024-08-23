@@ -31,11 +31,14 @@ const fetchData = async (url) => {
 
 // Example route for fetching user details
 app.get("/users", async (req, res) => {
-  const url = "https://www.eventbriteapi.com/v3/users/";
+  const url = "https://www.eventbriteapi.com/v3/users/me";
   const data = await fetchData(url);
   res.json(data);
 });
-
+// homepage
+app.get("/", (req, res) => {
+  res.send("Welcome to the Homepage!");
+});
 // Route for fetching event details
 app.get("/event", async (req, res) => {
   const url = "https://www.eventbriteapi.com/v3/events/996666074057/";
@@ -50,14 +53,20 @@ app.get("/order", async (req, res) => {
   res.json(data);
 });
 
+// Example route for fetching ticket classes
+app.get("/ticket_classes", async (req, res) => {
+  const url =
+    "https://www.eventbriteapi.com/v3/events/996666074057/ticket_classes/";
+  const data = await fetchData(url);
+  res.json(data);
+});
+
 // Example route for fetching venue details
 app.get("/venue", async (req, res) => {
   const url = "https://www.eventbriteapi.com/v3/venues/228068699/";
   const data = await fetchData(url);
   res.json(data);
 });
-
-// Example route for fetching organizer details
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
