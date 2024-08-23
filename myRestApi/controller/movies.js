@@ -69,6 +69,10 @@ export const updateMovie = async (req, res) => {
       "UPDATE movies SET name=$1, genre=$2, publish_year=$3, rating=$4 WHERE id= $5 RETURNING *",
       [name, genre, publish_year, rating, id]
     );
+    // check whether the movie with {id} exist
+    if (result.rowCount === 0) {
+      return res.status(404).send(`Movie with ID ${id} not found`);
+    }
     res.send(`Movie with ID ${id} has been updated`);
   } catch (err) {
     res.send(err.message);
