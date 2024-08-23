@@ -52,8 +52,8 @@ export const deleteMovie = async (req, res) => {
     // so nothing was deleted
     if (result.rowCount === 0) {
       return res.status(404).send(`Movie with ID ${id} not found`);
-      res.send(`Movie with ID ${id} has been deleted`);
     }
+    res.send(`Movie with ID ${id} has been deleted`);
   } catch (err) {
     res.send(err.message);
   }
