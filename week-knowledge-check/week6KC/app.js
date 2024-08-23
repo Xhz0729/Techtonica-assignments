@@ -12,7 +12,7 @@ const PORT = 3000;
 const oauthToken = process.env.OAUTH_TOKEN;
 
 // helper function to fetch data
-constFetchData = async (url) => {
+const fetchData = async (url) => {
   try {
     // Authenticate API Requests
     const res = await fetch(url, {
@@ -30,8 +30,18 @@ constFetchData = async (url) => {
 };
 
 // Example route for fetching user details
+app.get("/users", async (req, res) => {
+  const url = "https://www.eventbriteapi.com/v3/users/";
+  const data = await fetchData(url);
+  res.json(data);
+});
 
-// Example route for fetching event details
+// Route for fetching event details
+app.get("/event", async (req, res) => {
+  const url = "https://www.eventbriteapi.com/v3/events/1001499992437/";
+  const data = await fetchData(url);
+  res.json(data);
+});
 
 // Example route for fetching ticket class details
 
@@ -41,6 +51,6 @@ constFetchData = async (url) => {
 
 // Example route for fetching organizer details
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
