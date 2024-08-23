@@ -3,6 +3,7 @@ import pool from "../db.js";
 // get all movies
 export const getMovies = async (req, res) => {
   try {
+    // order by id asc here cause after update, the order can be shuffled.
     const allMovies = await pool.query("SELECT * FROM movies ORDER BY id ASC ");
     res.json(allMovies.rows);
   } catch (err) {
@@ -31,9 +32,7 @@ export const addMovie = async (req, res) => {
       "INSERT INTO movies (name, genre, publish_year, rating) VALUES ($1, $2, $3, $4) RETURNING *",
       [name, genre, publish_year, rating]
     );
-
     const newMovie = result.rows[0]; // Get the newly inserted movie
-
     res.send(`Movie with the name "${newMovie.name}" added to the database`);
   } catch (err) {
     res.send(err.message);
