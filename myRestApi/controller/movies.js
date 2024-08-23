@@ -48,6 +48,11 @@ export const deleteMovie = async (req, res) => {
       "DELETE FROM movies WHERE id= $1 RETURNING *",
       [id]
     );
+    // if rowCount === 0, specified ID didn’t exist in the database,
+    // so nothing was deleted
+    if (result.rowCount === 0) {
+      return res.status(404).send(`Movie with ID ${id} not found`);
+    }
     res.send(`Movie with ID ${id} has been deleted`);
   } catch (err) {
     res.send(err.message);
