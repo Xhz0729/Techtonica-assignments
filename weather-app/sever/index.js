@@ -1,9 +1,14 @@
 import express from "express";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
 //Set the port that you want the server to run on
 const PORT = process.env.PORT || 8080;
+
+// get my Api Key
+const apiKey = process.env.API_KEY;
 
 //creates an endpoint for the route /api
 app.get("/api", (req, res) => {
