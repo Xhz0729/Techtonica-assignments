@@ -15,12 +15,11 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    background: lightblue;
   }
   .weather {
     padding: 10px;
     border-radius: 10px;
-    background-color: rgb(123, 152, 205);
+    background-color: lightblue;
   }
 
   .search-bar {
@@ -29,5 +28,24 @@
 
   .search-bar img {
     width: 50px;
+  }
+
+  .weather-icon {
+    width: 200px;
+  }
+
+  .temp {
+    font-size: 3rem;
+  }
+
+  .city {
+    font-size: 2rem;
+  }
+
+  /* style weather data */
+  .weather-data {
+    gap: 20px;
+    margin-top: 0px;
+    font-size: 1rem;
   }
 }
