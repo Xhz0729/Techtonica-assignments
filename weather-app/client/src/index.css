@@ -10,3 +10,24 @@
   display: grid;
   background: lightblue;
 }
+@media (max-width: 430px) {
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: lightblue;
+  }
+  .weather {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(123, 152, 205);
+  }
+
+  .search-bar {
+    gap: 10px;
+  }
+
+  .search-bar img {
+    width: 50px;
+  }
+}
