@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nerko One", cursive;
+}
+.app {
+  height: 100vh;
+  display: grid;
+  background: lightblue;
+}
