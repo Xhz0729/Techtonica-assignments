@@ -5,11 +5,11 @@ import humidity_icon from '../assets/humidity.png'
 import wind_icon from '../assets/wind.png'
 
 const Weather = () => {
-    const [weatherdata, setWeatherdata] = useState(false);
+    const [weatherData, setWeatherData] = useState(false);
     const inputRef = useRef();
 
     // Fetch data from your backend instead of OpenWeatherMap directly
-    const search = async (city) => {
+    const fetchWeatherData = async (city) => {
         try { 
             const url = `/api/weather?city=${city}`;
             const res = await fetch(url);
@@ -19,7 +19,8 @@ const Weather = () => {
                 return;
             }
             const icon_id = data.weather[0].icon;
-            setWeatherdata({
+
+            setWeatherData({
                 humidity: data.main.humidity,
                 windSpeed: data.wind.speed,
                 temperature: data.main.temp,
@@ -27,35 +28,35 @@ const Weather = () => {
                 icon: `https://openweathermap.org/img/wn/${icon_id}@2x.png`
             });
         } catch (err) {
-            setWeatherdata(false);
+            setWeatherData(false);
             console.log(err.message);
         }
     };
 
     useEffect(() => {
-        search("New York");
+        fetchWeatherData("New York");
     }, []);
     /* check whether we get weatherdata or not */
     return (
         <div className="weather">
-            <div className="search-bar">
+            <form className="search-bar">
                 <input ref={inputRef} type="text" placeholder="Search" />
-                <img src={search_icon} alt="search icon" onClick={() => search(inputRef.current.value)} />
-            </div>
-            {weatherdata ?
+                <img src={search_icon} alt="search icon" onClick={() => fetchWeatherData(inputRef.current.value)} />
+            </form>
+            {weatherData ? 
                 <>
-                    <img src={weatherdata.icon} alt="weather icon" className="weather-icon" />
-                    <p className="temp">{weatherdata.temperature} F</p>
-                    <p className="city">{weatherdata.city}</p>
+                    <img src={weatherData.icon} alt="weather icon" className="weather-icon" />
+                    <p className="temp">{weatherData.temperature} F</p>
+                    <p className="city">{weatherData.city}</p>
                     <div className="weather-data">
                         <img src={humidity_icon} alt="humidity icon" />
                         <div>
-                            <p>{weatherdata.humidity} %</p>
+                            <p>{weatherData.humidity} %</p>
                             <span>Humidity</span>
                         </div>
                         <img src={wind_icon} alt="wind icon" />
                         <div>
-                            <p>{weatherdata.windSpeed} Km/h</p>
+                            <p>{weatherData.windSpeed} Km/h</p>
                             <span>Wind Speed</span>
                         </div>
                     </div>
