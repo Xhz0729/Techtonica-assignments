@@ -36,12 +36,21 @@ const Weather = () => {
     useEffect(() => {
         fetchWeatherData("New York");
     }, []);
+
+    // handle submit
+    function handleSubmit(e) {
+        e.preventDefault(); // Prevent the default form submission
+        fetchWeatherData(inputRef.current.value);
+    }
+
     /* check whether we get weatherdata or not */
     return (
         <div className="weather">
-            <form className="search-bar">
+            <form className="search-bar" onSubmit={handleSubmit}>
                 <input ref={inputRef} type="text" placeholder="Search" />
-                <img src={search_icon} alt="search icon" onClick={() => fetchWeatherData(inputRef.current.value)} />
+                <button type="submit" >
+                    <img src={search_icon} alt="search icon" />
+                </button>
             </form>
             {weatherData ? 
                 <>
