@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f1f1f1;
   color: #333;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -111,4 +111,91 @@ button:hover,
 
 h1 {
   animation: fadeSlideIn 3s ease-in-out;
+}
+
+@media (max-width: 449px) {
+  .game-container {
+    max-width: 300px;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+
+  #numberRange {
+    max-width: 275px;
+  }
+
+  #generateNumber {
+    font-size: 1rem;
+  }
+
+  #userInput {
+    max-width: 275px;
+  }
+
+  #target, #count, #guessedNumbers {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 450px) {
+  .game-container {
+    max-width: 500px;
+  }
+
+  #target {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 760px) {
+  body {
+    max-width: 750px;
+  }
+
+  .game-container {
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  label {
+    font-size: 1.25rem;
+  }
+
+  #numberRange {
+    max-width: 450px;
+  }
+
+  #generateNumber {
+    font-size: 1.5rem;
+  }
+
+  #userInput {
+    max-width: 450px;
+  }
+
+  #target, #count,
+  #guessedNumbers {
+    font-size: 1.4rem;
+  }
+
+  #guessedNumbers {
+    max-width: 500px;
+  }
 }
