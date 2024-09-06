@@ -9,7 +9,7 @@ let lastFetchTime = 0;
 const CACHE_DURATION = 1000 * 60 * 10;
 
 const app = express();
-const PORT = 8080;
+const PORT = 8000;
 
 // Configuring cors middleware
 app.use(cors());
