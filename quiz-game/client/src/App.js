@@ -9,10 +9,18 @@ function App() {
   // gameState
   const [gameState, setGameState] = useState("menu");
 
+  // update my user info
+  const [user, setUser] = useState("");
+
+  const handleUser = (text) => {
+    setUser(text);
+  };
+
   return (
     <div className="App">
-      <QuizContext.Provider value={{ gameState, setGameState }}>
-        {gameState === "menu" && <User />}
+      <h1>Welcome to my game {user}</h1>
+      <QuizContext.Provider value={{ gameState, setGameState, user, setUser }}>
+        {gameState === "menu" && <User grabUser={handleUser} />}
         {gameState === "quiz" && <Quiz />}
         {gameState === "ending" && <Ending />}
       </QuizContext.Provider>
