@@ -60,7 +60,7 @@ const Quiz = () => {
     <div className="quiz">
       {/* Render your quiz questions, fetching takes time, first check whether we get the quiz data */}
       {questions.length > 0 ? (
-        <div>
+        <div className="quizPage">
           {/* Quiz logic goes here */}
           <h2>{questions[questionIdx].question}</h2>
           <div className="options">
