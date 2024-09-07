@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { QuizContext } from "../Helper/Context";
 
 const Ending = () => {
-  return <div>Ending</div>;
+   const { score } = useContext(QuizContext);
+  return <div></div>;
 };
 
 export default Ending;
