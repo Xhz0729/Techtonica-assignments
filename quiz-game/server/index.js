@@ -2,6 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import fetch from "node-fetch";
+import dotenv from "dotenv";
+dotenv.config();
 
 // implemente caching to avoid multiple calls
 let cachedData = null;
@@ -10,6 +12,8 @@ const CACHE_DURATION = 1000 * 60 * 10;
 
 const app = express();
 const PORT = 8000;
+
+const apiKey = process.env.URL;
 
 // Configuring cors middleware
 app.use(cors());
@@ -25,8 +29,7 @@ app.get("/", (req, res) => {
 
 // fetch data from API url
 app.get("/api/game", async (req, res) => {
-  const url =
-    "https://opentdb.com/api.php?amount=5&category=12&difficulty=easy&type=boolean";
+  const url = apiKey;
   const currentTime = Date.now();
 
   // Check if cache is still valid
