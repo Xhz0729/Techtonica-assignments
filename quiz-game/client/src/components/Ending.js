@@ -10,7 +10,7 @@ const Ending = () => {
     setScore(0);
   };
   return (
-    <div>
+    <div className="ending">
       <h1>Thank you for playing the quiz game!</h1>
       <h3>Your score is: {score} / 5</h3>
       <button onClick={restartQuiz} className="restart">

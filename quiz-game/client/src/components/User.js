@@ -16,7 +16,7 @@ const User = (props) => {
   };
 
   return (
-    <div>
+    <div className="message">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
