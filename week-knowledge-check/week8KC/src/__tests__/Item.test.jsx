@@ -5,7 +5,7 @@ import Item from "../components/item";
 
 describe("Item component rendering", () => {
   test("renders Item component properly when text is provided", () => {
-    // Render the Item component with a non-empty text prop
+    // Render the Item component with a text prop
     render(<Item item={{ text: "Learn Testing" }} />);
 
     // Check if the item text is rendered

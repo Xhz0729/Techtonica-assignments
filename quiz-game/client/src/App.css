@@ -1,0 +1,145 @@
+html {
+  background-image: url("./quiz-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.App {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.App h1 {
+  background-color: lightblue;
+  padding: 30px;
+  margin-top: 40px;
+  color: #333;
+  font-family: "Bungee Tint", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3.5rem;
+}
+
+.input {
+  width: 300px;
+  padding: 15px;
+  margin-right: 20px;
+  border: 2px solid blanchedalmond;
+  font-size: 1.3rem;
+}
+
+.message button {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  background-color: antiquewhite;
+  cursor: pointer;
+  font-size: large;
+}
+
+.quiz h2 {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3rem;
+  background-color: antiquewhite;
+  padding: 20px;
+  width: 880px;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.options button {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #3d3b3b;
+  cursor: pointer;
+}
+
+.processBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nextBtn,
+.finishBtn {
+  padding: 20px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #3d3b3b;
+  cursor: pointer;
+}
+
+.score {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.score h2 {
+  background-color: rgb(205, 210, 212);
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(174, 72, 72);
+  width: 600px;
+}
+
+.ending {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.ending h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3rem;
+  background-color: slateblue;
+  padding: 20px;
+  width: 600px;
+  color: lightyellow;
+}
+
+.ending h3 {
+  background-color: slategray;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  color: white;
+  width: 180px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.restart {
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(240, 181, 5);
+  border: 2px solid rgb(240, 181, 5);
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.restart:hover {
+  background-color: slateblue;
+}
