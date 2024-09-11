@@ -1,26 +1,26 @@
 body {
-    background: rgb(238,174,202);
-    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family:sans-serif;
+    font-family: sans-serif;
 }
 
 h1 {
     margin: 40px;
-    color:rgb(165, 110, 165);
+    color: rgb(165, 110, 165);
     text-align: center;
 }
 
-.container{
+.container {
     width: 500px;
     height: 400px;
-    background-color:#f1f1f1;
+    background-color: #f1f1f1;
     margin: 20px auto;
     padding: 30px;
     text-align: center;
-    border-radius: 8px; 
+    border-radius: 8px;
     box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
 }
 
@@ -32,6 +32,7 @@ h1 {
     margin: 40px auto;
     transform-style: preserve-3d;
 }
+
 #coin img {
     width: 100%;
 }
@@ -49,20 +50,27 @@ h1 {
 
 /* add flip animation to heads */
 @keyframes heads-spin {
-    0%{
+    0% {
         transform: rotateX(0) scale(1);
     }
-    100%{
-        transform: rotateX(2160deg) scale(1.5);
+    50% {
+        transform: rotateX(1080deg) scale(1.5);
+    }
+    100% {
+        transform: rotateX(2160deg) scale(1);
     }
 }
+
 /* add flip animation to tails */
 @keyframes tails-spin {
-    0%{
+    0% {
         transform: rotateX(0) scale(1);
     }
-    100%{
-        transform: rotateX(1980deg) scale(1.5);
+    50% {
+        transform: rotateX(990deg) scale(1.5);
+    }
+    100% {
+        transform: rotateX(1980deg) scale(1);
     }
 }
 
@@ -79,7 +87,7 @@ h1 {
 #tailsCount {
     margin-left: 50%;
 }
- 
+
 /* style the btn */
 .btn {
     display: flex;
@@ -87,7 +95,7 @@ h1 {
     margin: 20px auto;
 }
 
-button{
+button {
     width: 120px;
     padding: 10px;
     border: none;
