@@ -13,6 +13,14 @@ Event Management is a full-stack web application built with React, Express, Post
 - **Favorite Events**: Mark events as favorites and view a list of favorite events.
 - **Testing**: Basic unit tests written using Jest to ensure component functionality.
 
+## Demo
+
+![Add Event](demo/addEvent.gif)
+_User put new event information and hit Add Event button to add an new event_
+
+![Edit Event](demo/editEvent.gif)
+_User hit the Edit button to edit event, hit Save Changes button to save changes_
+
 ## Technologies Used
 
 - **Front-End**:
