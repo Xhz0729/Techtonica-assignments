@@ -1,0 +1,90 @@
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app h1 {
+  color: lightblue;
+}
+
+.addEventForm {
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+.addEventForm input {
+  margin: 10px;
+}
+
+.eventCard {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.eventCard h3 {
+  color: slateblue;
+}
+
+.location {
+  font-style: italic;
+}
+
+.eventCard button {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 15px;
+}
+.search input {
+  padding: 10px 90px;
+  margin: 10px;
+}
+.search button {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: cadetblue;
+}
+
+.likedEvent {
+  margin-top: 15px;
+  display: flex;
+  gap: 5px;
+}
+.likedEvent p {
+  font-style: italic;
+}
+
+.likedEvent button {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.likedEvent button:hover {
+  background-color: cadetblue;
+}
+
+.backBtn {
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.backBtn:hover {
+  background-color: cadetblue;
+}
