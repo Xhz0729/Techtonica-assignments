@@ -54,7 +54,7 @@ const App = () => {
           <LikedEvent dispatch={dispatch} />
         </>
       )}
-      {gameState === 'searchpage' || gameState === 'likedevent' && (
+      {(gameState === 'searchpage' || gameState === 'likedevent') && (
         <>
           <EventList events={events} dispatch={dispatch} />
           <BackToHomepage dispatch={dispatch} />
