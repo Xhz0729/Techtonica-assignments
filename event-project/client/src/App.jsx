@@ -1,14 +1,43 @@
+import React, { useReducer, useEffect, useState } from 'react';
+import AddEventForm from './components/AddEventForm';
+import EventList from './components/EventList';
 import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
 
+const eventReducer = (state, action) => {
+  switch (action.type) {
+    case 'SET_EVENTS':
+      return action.payload;
+    case 'ADD_EVENT':
+      return [...state, action.payload];
+    case 'DELETE_EVENT':
+      return state.filter(event => event.id !== action.payload);
+    case 'UPDATE_EVENT':
+      return state.map(event => event.id === action.payload.id ? action.payload : event);
+    default:
+      return state;
+  }
+};
 
-function App() {
+const App = () => {
+  const [events, dispatch] = useReducer(eventReducer, []);
+
+  useEffect(() => {
+    // Fetch initial list of events from the backend
+    const fetchEvents = async () => {
+      const response = await fetch('http://localhost:8080/events');
+      const data = await response.json();
+      dispatch({ type: 'SET_EVENTS', payload: data });
+    };
+    fetchEvents();
+  }, []);
 
   return (
-    <div className="App">
-
+    <div className='app'>
+      <h1>Event Management</h1>
+      <AddEventForm dispatch={dispatch}/>
+      <EventList events={events} dispatch={dispatch} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
