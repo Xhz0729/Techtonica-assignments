@@ -1,6 +1,8 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import AddEventForm from './components/AddEventForm';
 import EventList from './components/EventList';
+import SearchEvent from './components/SearchEvent';
+import { EventContext } from './helper/Context.jsx';
 import './App.css'
 
 const eventReducer = (state, action) => {
@@ -13,6 +15,8 @@ const eventReducer = (state, action) => {
       return state.filter(event => event.id !== action.payload);
     case 'UPDATE_EVENT':
       return state.map(event => event.id === action.payload.id ? action.payload : event);
+    case 'SEARCH_EVENT':
+      return action.payload;
     default:
       return state;
   }
@@ -20,6 +24,7 @@ const eventReducer = (state, action) => {
 
 const App = () => {
   const [events, dispatch] = useReducer(eventReducer, []);
+  const [gameState, setGameState] = useState("menu");
 
   useEffect(() => {
     // Fetch initial list of events from the backend
@@ -34,8 +39,22 @@ const App = () => {
   return (
     <div className='app'>
       <h1>Event Management</h1>
-      <AddEventForm dispatch={dispatch}/>
-      <EventList events={events} dispatch={dispatch} />
+      <EventContext.Provider
+        value={{ gameState, setGameState}}
+      >
+      {gameState === 'menu' && (
+        <>
+          <AddEventForm dispatch={dispatch} />
+          <EventList events={events} dispatch={dispatch} />
+          <SearchEvent dispatch={dispatch} />
+        </>
+      )}
+      {gameState === 'searchpage' && (
+        <>
+          <EventList events={events} dispatch={dispatch} />
+        </>
+      )}
+      </EventContext.Provider>
     </div>
   );
 };
