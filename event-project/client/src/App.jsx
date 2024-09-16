@@ -3,6 +3,7 @@ import AddEventForm from './components/AddEventForm';
 import EventList from './components/EventList';
 import SearchEvent from './components/SearchEvent';
 import { EventContext } from './helper/Context.jsx';
+import BackToHomepage from './components/BackToHomepage.jsx';
 import './App.css'
 
 const eventReducer = (state, action) => {
@@ -52,6 +53,7 @@ const App = () => {
       {gameState === 'searchpage' && (
         <>
           <EventList events={events} dispatch={dispatch} />
+          <BackToHomepage dispatch={dispatch} />
         </>
       )}
       </EventContext.Provider>
