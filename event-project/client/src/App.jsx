@@ -3,6 +3,7 @@ import AddEventForm from './components/AddEventForm';
 import EventList from './components/EventList';
 import SearchEvent from './components/SearchEvent';
 import { EventContext } from './helper/Context.jsx';
+import LikedEvent from './components/LikedEvent.jsx';
 import BackToHomepage from './components/BackToHomepage.jsx';
 import './App.css'
 
@@ -17,6 +18,8 @@ const eventReducer = (state, action) => {
     case 'UPDATE_EVENT':
       return state.map(event => event.id === action.payload.id ? action.payload : event);
     case 'SEARCH_EVENT':
+      return action.payload;
+    case 'LIKED_EVENT':
       return action.payload;
     default:
       return state;
@@ -48,9 +51,10 @@ const App = () => {
           <AddEventForm dispatch={dispatch} />
           <EventList events={events} dispatch={dispatch} />
           <SearchEvent dispatch={dispatch} />
+          <LikedEvent dispatch={dispatch} />
         </>
       )}
-      {gameState === 'searchpage' && (
+      {gameState === 'searchpage' || gameState === 'likedevent' && (
         <>
           <EventList events={events} dispatch={dispatch} />
           <BackToHomepage dispatch={dispatch} />
