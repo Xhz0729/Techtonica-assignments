@@ -21,6 +21,15 @@ _User put new event information and hit Add Event button to add an new event_
 ![Edit Event](demo/editEvent.gif)
 _User hit the Edit button to edit event, hit Save Changes button to save changes_
 
+![Delete Event](demo/deleteEvent.gif)
+_User hit the Delete button to delete event_
+
+![Search Event](demo/searchEvent.gif)
+_User hit the Search button to search event_
+
+![Favorite Event](demo/favoriteEvent.gif)
+_User hit the Favorite button to favorite an event and hit the Liked button to show liked events_
+
 ## Technologies Used
 
 - **Front-End**:
