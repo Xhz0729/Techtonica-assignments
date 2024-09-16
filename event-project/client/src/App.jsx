@@ -21,6 +21,8 @@ const eventReducer = (state, action) => {
       return action.payload;
     case 'LIKED_EVENT':
       return action.payload;
+    case 'TOGGLE_FAVORITE':
+      return state.map(event => event.id === action.payload ? { ...event, is_favorited: !event.is_favorited } : event);
     default:
       return state;
   }
