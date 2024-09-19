@@ -4,9 +4,9 @@ const SightingCard = ({sighting, dispatch}) => {
 
   return (
     <div>
-        <h3>{sighting.nickname}</h3>
-        <p>{sighting.location}</p>
-        <p>{sighting.sighting_date}</p>
+        <h3>Nickname: {sighting.nickname}</h3>
+        <p>Sighting Location: {sighting.location}</p>
+        <p>Sighting Date: {new Date(sighting.sighting_date).toLocaleDateString()}</p>
     </div>
   )
 }
