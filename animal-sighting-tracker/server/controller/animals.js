@@ -30,6 +30,29 @@ export const getSightings = async (req, res) => {
 export const addSighting = async (req, res) => {
   const { sighting_date, individual_id, location, is_healthy, sighter_email } =
     req.body;
+  // basic validation for required fields
+  if (!sighting_date || !individual_id || !location) {
+    return res.status(400).json({ error: "Required fields are missing." });
+  }
+
+  // validate individual_id is a number
+  if (typeof individual_id !== "number" || individual_id < 1) {
+    return res.status(400).json({ error: "Invalid individual ID." });
+  }
+
+  // validate email format
+  const emailRegex = /^\S+@\S+\.\S+$/;
+  if (!emailRegex.test(sighter_email)) {
+    return res.status(400).json({ error: "Invalid email format." });
+  }
+
+  // validate is_healthy (it should be either true, false, or null)
+  if (is_healthy !== true && is_healthy !== false && is_healthy !== null) {
+    return res
+      .status(400)
+      .json({ error: "is_healthy must be true, false, or null." });
+  }
+
   try {
     // check whether the individual exist
     const individualCheck = await db.query(
