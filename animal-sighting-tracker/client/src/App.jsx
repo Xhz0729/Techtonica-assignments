@@ -21,14 +21,21 @@ const animalsReducer = (state, action) => {
 }
 function App() {
   const [sightings, dispatch] = useReducer(animalsReducer, []);
-  
+
   useEffect(() => {
     // Fetch initial list of sightings from the backend
     const fetchSightings = async () => {
-      const response = await fetch('http://localhost:8080/animals/sightings');
-      const data = await response.json();
-      dispatch({ type: ACTIONS.SET_SIGHTINGS, payload: data });
-    };
+      try{
+        const response = await fetch('http://localhost:8080/animals/sightings');
+        if(!response.ok) {
+          throw new Error('Failed to fetch sightings');
+        }
+        const data = await response.json();
+        dispatch({ type: ACTIONS.SET_SIGHTINGS, payload: data });
+     } catch (error) {
+      console.error('Error fetching sightings:', error.message);
+     }
+    }
     fetchSightings();
   }, []);
 
