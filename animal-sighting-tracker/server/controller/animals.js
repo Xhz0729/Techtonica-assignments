@@ -22,7 +22,7 @@ export const getSightings = async (req, res) => {
     const { rows: sightings } = await db.query(query);
     res.json(sightings); // Send the fetched data as a JSON response
   } catch (e) {
-    return res.status(400).json({ e });
+    return res.status(400).json({ error: "Error fetching sightings." });
   }
 };
 
@@ -75,5 +75,36 @@ export const addSighting = async (req, res) => {
   } catch (e) {
     console.log(e);
     return res.status(400).json({ e });
+  }
+};
+
+// route to search sightings within a certain data range
+export const searchSightings = async (req, res) => {
+  const { start_date, end_date } = req.query; // get the query parameters
+
+  try {
+    let query = `
+      SELECT sightings.*, individuals.nickname
+      FROM sightings
+      JOIN individuals ON sightings.individual_id = individuals.id
+    `;
+
+    let queryParams = []; // this array will store query parameters
+
+    // If both start_date and end_date are provided, filter by date range
+    if (start_date && end_date) {
+      query += ` WHERE sightings.sighting_date BETWEEN $1 AND $2 `;
+      queryParams.push(start_date, end_date);
+    }
+
+    // Sort the results by sighting date (most recent first)
+    query += " ORDER BY sightings.sighting_date DESC;";
+
+    // Execute the query
+    const { rows: sightings } = await db.query(query, queryParams);
+    res.json(sightings); // Send the filtered data as a JSON response
+  } catch (e) {
+    console.error(e);
+    return res.status(400).json({ error: "Error fetching sightings." });
   }
 };

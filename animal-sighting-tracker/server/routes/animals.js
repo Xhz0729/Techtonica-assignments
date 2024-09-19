@@ -3,6 +3,7 @@ import {
   getSpecies,
   getSightings,
   addSighting,
+  searchSightings,
 } from "../controller/animals.js";
 
 const router = express.Router();
@@ -14,5 +15,8 @@ router.get("/sightings", getSightings);
 
 // add a sighting
 router.post("/sightings", addSighting);
+
+// search sightings
+router.get("/sightings/search", searchSightings);
 
 export default router;
