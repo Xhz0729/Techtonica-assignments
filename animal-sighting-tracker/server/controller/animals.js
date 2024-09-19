@@ -108,3 +108,25 @@ export const searchSightings = async (req, res) => {
     return res.status(400).json({ error: "Error fetching sightings." });
   }
 };
+
+// route to get individual details
+export const getIndividualDetails = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const query = `SELECT species.*, individuals.nickname, sightings.*
+    FROM individuals
+    JOIN species ON individuals.species_id = species.id
+    LEFT JOIN sightings ON sightings.individual_id = individuals.id
+    WHERE individuals.id = $1;
+    `;
+
+    const { rows: details } = await db.query(query, [id]);
+
+    if (details.length === 0) {
+      return res.status(404).json({ error: "Individual not found" });
+    }
+    res.json(details);
+  } catch (e) {
+    return res.status(400).json({ error: "Error fetching details." });
+  }
+};
