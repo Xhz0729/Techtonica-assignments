@@ -58,25 +58,29 @@ const AddSightingForm = ({ dispatch }) => {
         <input
           type='date'
           name='sighting_date'
-          placeholder='sighting date'
+          placeholder='Sighting Date'
           value={formData.sighting_date}
           onChange={handleChange}
+          required // Ensure this field is filled
         />
 
         <input
           type='number'
           name='individual_id'
-          placeholder='individual_id'
+          placeholder='Individual ID'
           value={formData.individual_id}
           onChange={handleChange}
+          required
+          min="1" // ID should be a positive number
         />
 
         <input
           type='text'
           name='location'
-          placeholder='location'
+          placeholder='Location'
           value={formData.location}
           onChange={handleChange}
+          required // Ensure location is filled in
         />
 
         <select
