@@ -13,12 +13,17 @@ export const getSpecies = async (req, res) => {
 // route to get all sightings with individual nicknames
 export const getSightings = async (req, res) => {
   try {
-    const query = `
-      SELECT sightings.*, individuals.nickname
-      FROM sightings
-      JOIN individuals ON sightings.individual_id = individuals.id
-      ORDER BY sightings.sighting_date DESC;
-    `;
+    const query = ` SELECT 
+    individuals.id AS id, 
+    individuals.nickname,
+    species.common_name AS species, 
+    COUNT(sightings.id) AS sightings_count, 
+    MAX(sightings.sighting_date) AS recent_sighting,  
+    (SELECT location FROM sightings WHERE individual_id = individuals.id ORDER BY sighting_date DESC LIMIT 1) AS recent_sighting_location
+    FROM individuals 
+    LEFT JOIN sightings ON sightings.individual_id = individuals.id
+    JOIN species ON individuals.species_id = species.id
+    GROUP BY individuals.id, species.common_name; `;
     const { rows: sightings } = await db.query(query);
     res.json(sightings); // Send the fetched data as a JSON response
   } catch (e) {
@@ -28,8 +33,12 @@ export const getSightings = async (req, res) => {
 
 // route to add a new sighting record
 export const addSighting = async (req, res) => {
-  const { sighting_date, individual_id, location, is_healthy, sighter_email } =
+  let { sighting_date, individual_id, location, is_healthy, sighter_email } =
     req.body;
+
+  // convert individual_id to a number
+  individual_id = parseInt(individual_id, 10);
+
   // basic validation for required fields
   if (!sighting_date || !individual_id || !location) {
     return res.status(400).json({ error: "Required fields are missing." });
@@ -42,7 +51,7 @@ export const addSighting = async (req, res) => {
 
   // validate email format
   const emailRegex = /^\S+@\S+\.\S+$/;
-  if (!emailRegex.test(sighter_email)) {
+  if (sighter_email && !emailRegex.test(sighter_email)) {
     return res.status(400).json({ error: "Invalid email format." });
   }
 
@@ -81,26 +90,33 @@ export const addSighting = async (req, res) => {
 // route to search sightings within a certain data range
 export const searchSightings = async (req, res) => {
   const { start_date, end_date } = req.query; // get the query parameters
-
   try {
-    let query = `
-      SELECT sightings.*, individuals.nickname
-      FROM sightings
-      JOIN individuals ON sightings.individual_id = individuals.id
-    `;
+    let query = ` SELECT 
+    individuals.id, 
+    individuals.nickname,
+    species.common_name AS species, 
+    COUNT(sightings.id) AS sightings_count, 
+    MAX(sightings.sighting_date) AS recent_sighting,  
+    (SELECT location FROM sightings WHERE individual_id = individuals.id ORDER BY sighting_date DESC LIMIT 1) AS recent_sighting_location
+    FROM individuals 
+    LEFT JOIN sightings ON sightings.individual_id = individuals.id
+    JOIN species ON individuals.species_id = species.id`;
 
     let queryParams = []; // this array will store query parameters
 
-    // If both start_date and end_date are provided, filter by date range
+    // if both start_date and end_date are provided, filter by date range
     if (start_date && end_date) {
       query += ` WHERE sightings.sighting_date BETWEEN $1 AND $2 `;
       queryParams.push(start_date, end_date);
     }
 
-    // Sort the results by sighting date (most recent first)
-    query += " ORDER BY sightings.sighting_date DESC;";
+    // now we add the GROUP BY clause after filtering by date
+    query += ` GROUP BY individuals.id, species.common_name `;
 
-    // Execute the query
+    // sort the results by sighting date (most recent first)
+    query += " ORDER BY recent_sighting DESC;";
+
+    // execute the query
     const { rows: sightings } = await db.query(query, queryParams);
     res.json(sightings); // Send the filtered data as a JSON response
   } catch (e) {
@@ -113,11 +129,20 @@ export const searchSightings = async (req, res) => {
 export const getIndividualDetails = async (req, res) => {
   const { id } = req.params;
   try {
-    const query = `SELECT species.*, individuals.nickname, sightings.*
-    FROM individuals
-    JOIN species ON individuals.species_id = species.id
-    LEFT JOIN sightings ON sightings.individual_id = individuals.id
-    WHERE individuals.id = $1;
+    const query = `
+      SELECT 
+         individuals.nickname,
+         species.*,
+         COUNT(sightings.id) AS sightings_count,
+         MIN(sightings.sighting_date) AS first_sighting,
+         MAX(sightings.sighting_date) AS recent_sighting,
+        (SELECT location FROM sightings WHERE individual_id = individuals.id ORDER BY sighting_date ASC LIMIT 1) AS first_sighting_location,
+        (SELECT location FROM sightings WHERE individual_id = individuals.id ORDER BY sighting_date DESC LIMIT 1) AS recent_sighting_location
+        FROM individuals
+        JOIN species ON individuals.species_id = species.id
+        LEFT JOIN sightings ON sightings.individual_id = individuals.id
+        WHERE individuals.id = $1
+        GROUP BY individuals.id, species.id;
     `;
 
     const { rows: details } = await db.query(query, [id]);
@@ -131,7 +156,7 @@ export const getIndividualDetails = async (req, res) => {
   }
 };
 
-// route to get individual 
+// route to get individual
 export const getIndividuals = async (req, res) => {
   try {
     const query = `SELECT id, nickname FROM individuals ORDER BY id;`;
@@ -141,4 +166,3 @@ export const getIndividuals = async (req, res) => {
     return res.status(400).json({ error: "Error fetching individuals." });
   }
 };
-
