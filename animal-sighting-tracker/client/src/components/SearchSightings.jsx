@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation} from 'react-router-dom';  
 
-const SearchSightings = ({ dispatch }) => {
+const SearchSightings = ({ dispatch, ACTIONS }) => {
   // state to store the start and end dates
   const [searchDate, setSearchDate] = useState({
     start_date: '',
     end_date: ''
   });
+
+  const navigate = useNavigate();  // initialize navigation
+  const location = useLocation(); 
 
   // handle submit
   const handleSubmit = async e => {
@@ -16,7 +20,10 @@ const SearchSightings = ({ dispatch }) => {
       const data = await response.json();
 
       // dispatch the search results to the reducer
-      dispatch({ type: 'search_sightings', payload: data });
+      dispatch({ type:ACTIONS.SEARCH_SIGHTINGS, payload: data });
+
+      // programmatically navigate to the search results page
+      navigate('/search');
     } catch (error) {
       console.error("Error fetching search results:", error);
     }
@@ -30,6 +37,13 @@ const SearchSightings = ({ dispatch }) => {
       [name]: value
     }));
   };
+
+  // effect to reset the sightings list when the user navigates back to the homepage
+  useEffect(() => {
+    if (location.pathname === '/') {
+      dispatch({ type: ACTIONS.RESET_SIGHTINGS });
+    }
+  }, [location, dispatch]);
 
   return (
     <div>
@@ -50,6 +64,7 @@ const SearchSightings = ({ dispatch }) => {
           onChange={handleChange}
           required  // ensure end date is required
         />
+
         <button type='submit'>Search Sightings</button> 
       </form>
     </div>
