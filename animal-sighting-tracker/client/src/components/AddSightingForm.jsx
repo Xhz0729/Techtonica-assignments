@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const AddSightingForm = ({ dispatch, ACTIONS }) => {
   const [formData, setFormData] = useState({
@@ -9,7 +9,26 @@ const AddSightingForm = ({ dispatch, ACTIONS }) => {
     sighter_email: ''  
   });
 
-  const [error, setError] = useState(''); // State for error messages
+  const [error, setError] = useState(''); // state for error messages
+  
+  const [individuals, setIndividuals] = useState([]); // store the list of individuals
+
+  useEffect(() => {
+    // Fetch individuals from the backend
+    const fetchIndividuals = async () => {
+      try{
+        const response = await fetch('http://localhost:8080/animals/individuals');
+        if(!response.ok) {
+          throw new Error('Failed to fetch individuals');
+        }
+        const data = await response.json();
+        setIndividuals(data); // set individuals in state
+     } catch (error) {
+      console.error('Error fetching sightings:', error.message);
+     }
+    }
+    fetchIndividuals();
+  }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -63,16 +82,21 @@ const AddSightingForm = ({ dispatch, ACTIONS }) => {
           onChange={handleChange}
           required // Ensure this field is filled
         />
-
-        <input
-          type='number'
-          name='individual_id'
-          placeholder='Individual ID'
-          value={formData.individual_id}
-          onChange={handleChange}
-          required
-          min="1" // ID should be a positive number
-        />
+        
+      {/* Dropdown for selecting individual by nickname */}
+      <select
+        name="individual_id"
+        value={formData.individual_id}
+        onChange={handleChange}
+        required
+      >
+        <option value="">Select Individual</option>
+        {individuals.map(individual => (
+          <option key={individual.id} value={individual.id}>
+            {individual.nickname}
+          </option>
+        ))}
+      </select>
 
         <input
           type='text'

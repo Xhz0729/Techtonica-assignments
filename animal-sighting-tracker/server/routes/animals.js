@@ -5,6 +5,7 @@ import {
   addSighting,
   searchSightings,
   getIndividualDetails,
+  getIndividuals,
 } from "../controller/animals.js";
 
 const router = express.Router();
@@ -22,5 +23,8 @@ router.get("/sightings/search", searchSightings);
 
 // get individual details
 router.get("/individuals/:id", getIndividualDetails);
+
+// get individuals
+router.get("/individuals", getIndividuals);
 
 export default router;

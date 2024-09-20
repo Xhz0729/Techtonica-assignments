@@ -35,7 +35,7 @@ export const addSighting = async (req, res) => {
     return res.status(400).json({ error: "Required fields are missing." });
   }
 
-  // validate individual_id is a number
+  // validate individual_id is a positive number
   if (typeof individual_id !== "number" || individual_id < 1) {
     return res.status(400).json({ error: "Invalid individual ID." });
   }
@@ -130,3 +130,15 @@ export const getIndividualDetails = async (req, res) => {
     return res.status(400).json({ error: "Error fetching details." });
   }
 };
+
+// route to get individual 
+export const getIndividuals = async (req, res) => {
+  try {
+    const query = `SELECT id, nickname FROM individuals ORDER BY id;`;
+    const { rows: individuals } = await db.query(query);
+    res.json(individuals);
+  } catch (e) {
+    return res.status(400).json({ error: "Error fetching individuals." });
+  }
+};
+
