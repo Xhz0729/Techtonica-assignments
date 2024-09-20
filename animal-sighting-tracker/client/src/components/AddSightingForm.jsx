@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AddSightingForm = ({ dispatch }) => {
+const AddSightingForm = ({ dispatch, ACTIONS }) => {
   const [formData, setFormData] = useState({
     sighting_date: '',
     individual_id: '',
@@ -29,7 +29,7 @@ const AddSightingForm = ({ dispatch }) => {
       }
 
       const newSighting = await response.json();
-      dispatch({ type: 'add_sighting', payload: newSighting });
+      dispatch({ type: ACTIONS.ADD_SIGHTING, payload: newSighting });
 
       // Clear form fields after successful submission
       setFormData({
