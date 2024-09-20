@@ -14,6 +14,7 @@ const IndividualDetail = () => {
           throw new Error('Failed to fetch individual details');
         }
         const data = await response.json();
+        console.log(data); 
         setDetails(data);
       } catch (error) {
         setError(error.message);
@@ -31,13 +32,20 @@ const IndividualDetail = () => {
         <>
           <p>Nickname: {details[0].nickname}</p>
           <p>Species: {details[0].common_name}</p>
+          <p>Scientific Name: {details[0].scientific_name}</p>
+          <p>Estimated Population: {details[0].estimated_population}</p>
+          <p>Conservation Status: {details[0].conservation_state_code}</p>
           <img src={details[0].image_url} alt={`Image of ${details[0].common_name}`} />
           <p>
             <a href={details[0].wikipedia_url} target="_blank" rel="noopener noreferrer">
               Learn more on Wikipedia
             </a>
           </p>
-          <p>Last Seen Location: {details[0].location}</p>
+          <p>First Sighting Date: {new Date(details[0].first_sighting).toLocaleDateString()}</p>
+          <p>First Sighting Location: {details[0].first_sighting_location}</p>
+          <p>Recent Sighting Date: {new Date(details[0].recent_sighting).toLocaleDateString()}</p>
+          <p>Recent Sighting Location: {details[0].recent_sighting_location}</p>
+          <p>Total Sightings: {details[0].sightings_count}</p>
         </>
       )}
     </div>

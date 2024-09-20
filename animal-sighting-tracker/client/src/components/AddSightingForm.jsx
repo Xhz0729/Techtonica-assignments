@@ -67,7 +67,7 @@ const AddSightingForm = ({ dispatch, ACTIONS }) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
-      [name]: value
+      [name]: name === 'is_healthy' ? (value === "true" ? true : value === "false" ? false : null) :value
     }));
   };
 
