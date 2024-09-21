@@ -3,4 +3,121 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #e0f7fa;
+  font-family: "Sofadi One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+h1 {
+  font-family: "Protest Guerrilla", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #0056b3;
+}
+
+/* style my add sighting form */
+.form-container,
+.card,
+.search-container,
+.details {
+  background-color: #f5f5dc;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.form-container input,
+.form-container select,
+.search-container input {
+  width: 70%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.search-container input:focus {
+  border-color: #007bff;
+}
+
+.form-container button,
+.search-container button {
+  background-color: rgb(121, 180, 199);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px;
+  width: 50%;
+}
+
+.form-container button:hover,
+.search-container button:hover {
+  background-color: #0056b3;
+}
+
+/* style my sighting card */
+.card {
+  background-color: #e0f7df;
+}
+.card h3,
+.details h2 {
+  color: #0056b3;
+  font-family: "Permanent Marker", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.card p,
+.details p {
+  color: slategrey;
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+
+.card a,
+.details a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.card a:hover,
+.details a:hover {
+  color: #0056b3;
+}
+
+/* style my searching part */
+
+.search-container,
+.details {
+  background-color: #cfe8d5;
+}
+
+.search-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/*style my details page*/
+.details img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 50%;
+  margin: 20px 0;
+}
+
+.details p a {
+  margin-top: 10px;
 }
