@@ -73,10 +73,10 @@ function App() {
   return (
     <Router>
       <div>
-        <h1>Show sightings</h1>
         <Routes>
           <Route  path="/" element= {
             <>
+              <h1>Show sightings</h1>
               <AddSightingForm dispatch={dispatch} ACTIONS={ACTIONS} />
               <SightingList sightings={state.allSightings} dispatch={dispatch} />
               <SearchSightings dispatch={dispatch} ACTIONS={ACTIONS} />

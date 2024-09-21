@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const SightingCard = ({sighting, dispatch}) => {
   return (
-    <div>
+    <div className='card'>
         <h3>Nickname: {sighting.nickname}</h3>
         <p>Species: {sighting.species}</p>
         <p>Recent Sighting Date: {new Date(sighting.recent_sighting).toLocaleDateString()}</p>

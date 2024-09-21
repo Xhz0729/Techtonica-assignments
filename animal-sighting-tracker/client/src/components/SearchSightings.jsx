@@ -46,19 +46,23 @@ const SearchSightings = ({ dispatch, ACTIONS }) => {
   }, [location, dispatch]);
 
   return (
-    <div>
+    <div className='search-container'>
       <form onSubmit={handleSubmit}>
+      <label htmlFor="start_date">Start Date</label>
         <input
           type='date'
           name='start_date'    // set a name attribute for easy state management
+          id='start_date'
           placeholder='Start Date'
           value={searchDate.start_date}
           onChange={handleChange}
           required  // ensure start date is required
         />
+        <label htmlFor="end_date">End Date</label>
         <input
           type='date'
           name='end_date'      // set a name attribute for easy state management
+          id='end_date'
           placeholder='End Date'
           value={searchDate.end_date}
           onChange={handleChange}

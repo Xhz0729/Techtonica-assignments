@@ -26,7 +26,7 @@ const IndividualDetail = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <div className='details'>
       <h2>Individual Details</h2>
       {details && (
         <>
