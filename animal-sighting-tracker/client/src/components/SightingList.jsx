@@ -9,7 +9,7 @@ const SightingList = ({sightings, dispatch}) => {
             <SightingCard key={sighting.id} sighting = {sighting} dispatch={dispatch} />
             ))
         ) : (
-            <p>No sightings avaliable</p>
+            <p>No sightings available</p>
         )}
     </div>
   );
