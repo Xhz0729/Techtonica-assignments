@@ -6,7 +6,7 @@ export const getSpecies = async (req, res) => {
     const { rows: species } = await db.query("SELECT * FROM species");
     res.send(species);
   } catch (e) {
-    return res.status(400).json({ e });
+    return res.status(400).json({ error: "Error fetching species." });
   }
 };
 
