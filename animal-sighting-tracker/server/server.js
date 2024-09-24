@@ -15,4 +15,11 @@ app.get("/", (req, res) => {
 
 app.use("/animals", animalsRoutes);
 
-app.listen(PORT, () => console.log(`Server is listening on ${PORT}`));
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => {
+    console.log(`Server is listening on ${PORT}`);
+  });
+}
+
+// Export the app for testing
+export default app;
