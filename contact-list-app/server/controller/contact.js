@@ -24,7 +24,8 @@ export const getContactDetails = async (req, res) => {
       a.state, 
       a.zip_code, 
       a.country, 
-      n.notes
+      n.notes,
+      n.image_url
     FROM contact c
     LEFT JOIN address a ON c.id = a.contact_id
     LEFT JOIN note n ON c.id = n.contact_id
