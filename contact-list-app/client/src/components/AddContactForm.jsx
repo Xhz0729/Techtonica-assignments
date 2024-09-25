@@ -50,7 +50,7 @@ const AddContactForm = ({ dispatch, ACTIONS }) => {
         }));
     }; 
     return (
-    <div>
+    <div className='form-container'>
         <form onSubmit={handleSubmit}>
             <input
                 type='text'

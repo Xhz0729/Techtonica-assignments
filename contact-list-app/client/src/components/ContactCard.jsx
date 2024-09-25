@@ -31,8 +31,10 @@ const ContactCard = ({contact, dispatch, ACTIONS}) => {
                 <Link to={`/${contact.id}`}>
                     View Details
                 </Link>
-                <button onClick={handleDelete}>Delete</button>
-                <button onClick={() => setIsEditing(true)}>Edit</button>
+                <div className='editButton'>
+                  <button onClick={handleDelete}>Delete</button>
+                  <button onClick={() => setIsEditing(true)}>Edit</button>
+                </div>
             </div>
         )}
     </div>
