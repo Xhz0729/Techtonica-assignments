@@ -2,6 +2,8 @@ import './App.css'
 import { useReducer, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import ContactList from './components/ContactList';
+import AddContactForm from './components/AddContactForm';
+import ContactDetails from './components/ContactDetails';
 
 const ACTIONS = {
   SET_CONTACTS: "set_contact",
@@ -12,7 +14,6 @@ const ACTIONS = {
 
   UPDATE_CONTACT:"update_contact"
 }
-
 
 const contactReducer = (state, action) => {
   switch (action.type) {
@@ -56,10 +57,14 @@ function App() {
           <Route  path="/" element= {
             <>
               <h1>Show Contacts</h1>
-              <ContactList contacts={state} dispatch={dispatch} />
+              <AddContactForm dispatch={dispatch} ACTIONS={ACTIONS} />
+              <ContactList contacts={state} dispatch={dispatch} ACTIONS={ACTIONS} />
             </>
           }
           />
+
+          {/* Route for search results */}
+          <Route path="/:id" element={<ContactDetails />} />
         </Routes>
       </div>
     </Router>
