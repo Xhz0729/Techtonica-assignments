@@ -30,6 +30,7 @@ const ContactDetails = () => {
       <h2>Contact Details</h2>
       {details && (
         <>
+          <img src={details[0].image_url} alt={`Image of ${details[0].first_name}`} />
           <p>First Name: {details[0].first_name}</p>
           <p>Last Name: {details[0].last_name}</p>
           <p>Email: {details[0].email}</p>
