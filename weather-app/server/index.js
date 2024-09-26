@@ -61,11 +61,14 @@ app.post("/user", async (req, res) => {
     ]);
 
     if (user.rows.length > 0) {
+      // Only update the favorite city if it is not null (i.e., user checked the box)
+      const currentFavoriteCity = favorite_city || user.rows[0].favorite_city;
+
       // If user exists, update the favorite city
       const updatedQuery = `UPDATE users  SET username = $1, favorite_city = $2  WHERE user_email = $3 RETURNING *`;
       const updatedUser = await db.query(updatedQuery, [
         username,
-        favorite_city,
+        currentFavoriteCity,
         user_email,
       ]);
       // Send updated user data back
@@ -92,13 +95,22 @@ app.post("/user", async (req, res) => {
   }
 });
 
-// route to get user information
-app.get("/users", async (req, res) => {
+// route to get user information by email
+app.get("/user", async (req, res) => {
+  let { email } = req.query;
+
   try {
-    const { rows: user } = await db.query("SELECT * FROM users");
-    res.send(user);
+    const { rows: user } = await db.query(
+      "SELECT * FROM users WHERE user_email = $1",
+      [email]
+    );
+    if (user.length > 0) {
+      res.status(200).json(user[0]); // Send the user object if found
+    } else {
+      res.status(404).json({ message: "User not found" }); // Handle case where no user is found
+    }
   } catch (e) {
-    return res.status(400).json({ e: "Error fetching users" });
+    return res.status(400).json({ error: "Error fetching users" });
   }
 });
 
