@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import fetch from "node-fetch";
+import db from "./db/db-connection.js";
+
 dotenv.config();
 
 const app = express();
@@ -39,6 +41,16 @@ app.get("/api/weather", async (req, res) => {
     res.json(data);
   } catch (error) {
     console.log(error);
+  }
+});
+
+// route to get user information
+app.get("/users", async (req, res) => {
+  try {
+    const { rows: user } = await db.query("SELECT * FROM users");
+    res.send(user);
+  } catch (e) {
+    return res.status(400).json({ e: "Error fetching users" });
   }
 });
 
