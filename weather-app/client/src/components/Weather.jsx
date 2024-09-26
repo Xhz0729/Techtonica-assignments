@@ -35,11 +35,23 @@ const Weather = () => {
     };
     // Function to handle both weather API and backend update for favorite city
     const handleUserSubmit = async ({ username, user_email, city, favorite }) => {
-        // Fetch weather data
-        fetchWeatherData(city);
-
-        // Send data to backend to add or update the user record
         try {
+            let favorite_city;
+
+            // Fetch user data to get the current favorite city if the user exists
+            const userResponse = await fetch(`http://localhost:8080/user?email=${user_email}`);
+            if (userResponse.ok) {
+                const userData = await userResponse.json();
+                favorite_city = favorite ? city : userData.favorite_city;
+            } else {
+                favorite_city = favorite ? city : null;
+            }
+          
+            // Fetch weather data
+            fetchWeatherData(city);
+
+            // Send data to backend to add or update the user record
+
             const res = await fetch('http://localhost:8080/user', {
                 method: 'POST',
                 headers: {
@@ -48,7 +60,7 @@ const Weather = () => {
                 body: JSON.stringify({
                     username,
                     user_email,
-                    favorite_city: favorite ? city : null
+                    favorite_city,
                 }),
             });
 
@@ -56,7 +68,7 @@ const Weather = () => {
                 const data = await res.json();
                 alert(`Error: ${data.message}`);
             }
-            setCurrentUser({ username, user_email });
+            setCurrentUser({ username, user_email, favorite_city });
         } catch (error) {
             console.error("Failed to update user", error);
         }
@@ -69,7 +81,11 @@ const Weather = () => {
     /* check whether we get weatherdata or not */
     return (
         <div className="weather">
-             {currentUser && <p>You are logged in as {currentUser.username}</p>}
+             {currentUser &&
+             <>
+                <p>You are logged in as {currentUser.username}</p>
+                <p>Your favorite city is {currentUser.favorite_city}</p>
+             </>}
              <UserInputForm onSubmit={handleUserSubmit} />
             {weatherData ? 
                 <>
