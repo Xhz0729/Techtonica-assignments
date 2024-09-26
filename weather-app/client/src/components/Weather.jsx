@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Weather.css'
-import search_icon from '../assets/search.png'
 import humidity_icon from '../assets/humidity.png'
 import wind_icon from '../assets/wind.png'
+import UserInputForm from "./UserInputForm";
 
 const Weather = () => {
     const [weatherData, setWeatherData] = useState(false);
-    const inputRef = useRef();
+    const [currentUser, setCurrentUser] = useState(null);
+
 
     // Fetch data from your backend instead of OpenWeatherMap directly
     const fetchWeatherData = async (city) => {
@@ -32,26 +33,44 @@ const Weather = () => {
             console.log(err.message);
         }
     };
+    // Function to handle both weather API and backend update for favorite city
+    const handleUserSubmit = async ({ username, user_email, city, favorite }) => {
+        // Fetch weather data
+        fetchWeatherData(city);
+
+        // Send data to backend to add or update the user record
+        try {
+            const res = await fetch('http://localhost:8080/user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    user_email,
+                    favorite_city: favorite ? city : null
+                }),
+            });
+
+            if (!res.ok) {
+                const data = await res.json();
+                alert(`Error: ${data.message}`);
+            }
+            setCurrentUser({ username, user_email });
+        } catch (error) {
+            console.error("Failed to update user", error);
+        }
+    };
 
     useEffect(() => {
         fetchWeatherData("New York");
     }, []);
 
-    // handle submit
-    function handleSubmit(e) {
-        e.preventDefault(); // Prevent the default form submission
-        fetchWeatherData(inputRef.current.value);
-    }
-
     /* check whether we get weatherdata or not */
     return (
         <div className="weather">
-            <form className="search-bar" onSubmit={handleSubmit}>
-                <input ref={inputRef} type="text" placeholder="Search" />
-                <button type="submit" >
-                    <img src={search_icon} alt="search icon" />
-                </button>
-            </form>
+             {currentUser && <p>You are logged in as {currentUser.username}</p>}
+             <UserInputForm onSubmit={handleUserSubmit} />
             {weatherData ? 
                 <>
                     <img src={weatherData.icon} alt="weather icon" className="weather-icon" />
