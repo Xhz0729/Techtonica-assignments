@@ -18,13 +18,10 @@ const UserInputForm = ({ onSubmit }) => {
       city: cityRef.current.value,
       favorite: favoriteRef.current.checked,
     });
-    // Clear the input fields after submission
-   nameRef.current.value = '';
-   emailRef.current.value = '';
+   // Clear the city input fields after submission
    cityRef.current.value = '';
    favoriteRef.current.checked = false;  // Reset the checkbox
   };
-
 
   return (
     <form className="search-bar" onSubmit={handleSubmit}>
