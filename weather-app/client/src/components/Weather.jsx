@@ -86,10 +86,10 @@ const Weather = () => {
             {/* Error message display */}
             {error && <p style={{ color: 'red' }}>{error}</p>}
              {currentUser &&
-             <>
+             <div className="userInfo">
                 <p>You are logged in as {currentUser.username}</p>
                 <p>Your favorite city is {currentUser.favorite_city}</p>
-             </>}
+             </div>}
              <UserInputForm onSubmit={handleUserSubmit} />
             {weatherData ? 
                 <>

@@ -61,3 +61,12 @@ button {
   margin-top: 30px;
   font-size: 1.5rem;
 }
+.userInfo {
+  font-size: 2rem;
+  font-style: italic;
+  color: coral;
+}
+
+.userInfo p {
+  margin-bottom: 10px;
+}
