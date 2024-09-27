@@ -63,15 +63,16 @@ _User input username, email, city and check the favorite checkbox to show user b
 
 4. **Setup PostgreSQL Database**
    Create a PostgreSQL database and add the table users.
-
-Run the SQL commands provided in `weatherdb_dump.sql` to set up the database schema.
+   Run the SQL commands provided in `weatherdb_dump.sql` to set up the database schema.
 
 5. **Setup .env for API and db connection**
-   Go to server and create a .env file: -**API connection:**
-   API_KEY=YOUR_API_KEY
+   Go to server and create a .env file:
 
-   -**DATABASE connection:**
-   DATABASE_URI="postgresql://localhost/your_database_name"
+   - **API connection:**
+     API_KEY=YOUR_API_KEY
+
+   - **Databse connection:**
+     DATABASE_URI="postgresql://localhost/your_database_name"
 
 6. **Start the Development Server**
 
@@ -80,7 +81,7 @@ cd server
 npm run dev
 ```
 
-This will start both the server and client using the `concurrently` package.
+_This will start both the server and client using the `concurrently` package_
 
 ## 🤝 Contributions
 
