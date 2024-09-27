@@ -7,7 +7,7 @@ import UserInputForm from "./UserInputForm";
 const Weather = () => {
     const [weatherData, setWeatherData] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
-
+    const [error, setError] = useState('');
 
     // Fetch data from your backend instead of OpenWeatherMap directly
     const fetchWeatherData = async (city) => {
@@ -16,8 +16,7 @@ const Weather = () => {
             const res = await fetch(url);
             const data = await res.json();
             if (!res.ok) {
-                alert(data.message);
-                return;
+                throw new Error(data.message || "Failed to fetch weather data");
             }
             const icon_id = data.weather[0].icon;
 
@@ -39,6 +38,7 @@ const Weather = () => {
             let favorite_city;
 
             // Fetch user data to get the current favorite city if the user exists
+            // The query parameter ?email=${user_email} sends the user's email to the backend in the URL
             const userResponse = await fetch(`http://localhost:8080/user?email=${user_email}`);
             if (userResponse.ok) {
                 const userData = await userResponse.json();
@@ -51,12 +51,12 @@ const Weather = () => {
             fetchWeatherData(city);
 
             // Send data to backend to add or update the user record
-
             const res = await fetch('http://localhost:8080/user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                // Convert a JavaScript object into a JSON string
                 body: JSON.stringify({
                     username,
                     user_email,
@@ -66,11 +66,13 @@ const Weather = () => {
 
             if (!res.ok) {
                 const data = await res.json();
-                alert(`Error: ${data.message}`);
+                throw new Error(data.message || 'Failed to add/update user information');
             }
             setCurrentUser({ username, user_email, favorite_city });
+            setError(''); // Clear the error only if everything succeeds
         } catch (error) {
             console.error("Failed to update user", error);
+            setError(error.message || 'Error updating user information');
         }
     };
 
@@ -81,6 +83,8 @@ const Weather = () => {
     /* check whether we get weatherdata or not */
     return (
         <div className="weather">
+            {/* Error message display */}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
              {currentUser &&
              <>
                 <p>You are logged in as {currentUser.username}</p>
