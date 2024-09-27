@@ -86,7 +86,7 @@ const AddContactForm = ({ dispatch, ACTIONS }) => {
                 onChange={handleChange}
             />
 
-            <button type='submit'>Add Sighting</button>
+            <button type='submit'>Add Contact</button>
 
         </form>
 
