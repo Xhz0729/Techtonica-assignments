@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -11,7 +12,7 @@ const Login = () => {
       [e.target.name]: e.target.value,
     });
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -41,19 +42,23 @@ const Login = () => {
       } else {
         // Handle errors if the response is not ok
         const errorData = await response.json();
-        console.error('Login error:', errorData.message);
+        setErrorMessage(errorData.message || 'Login failed');
       }
     } catch (error) {
+      setErrorMessage('An unexpected error occurred. Please try again.'); // Catch unexpected errors
       console.error('An unexpected error occurred:', error);
     }
   };
   
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-      <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
+        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
+        <button type="submit">Login</button>
+      </form>
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+    </div>
   );
 };
 
