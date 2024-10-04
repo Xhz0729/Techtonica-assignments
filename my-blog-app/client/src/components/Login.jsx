@@ -51,13 +51,13 @@ const Login = () => {
   };
   
   return (
-    <div>
+    <div className='login-container'>
       <form onSubmit={handleSubmit}>
         <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
         <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
         <button type="submit">Login</button>
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </form>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
     </div>
   );
 };
