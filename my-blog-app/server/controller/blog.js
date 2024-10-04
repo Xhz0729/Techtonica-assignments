@@ -62,3 +62,23 @@ export const getUserPosts = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+// Controller to get details
+// Get post details by post_id
+export const getUserPostsDetails = async (req, res) => {
+  const { postId } = req.params;
+  try {
+    const postDetails = await db.query(
+      'SELECT p.title, pd.details, pd.image_url FROM posts p JOIN post_details pd ON p.id = pd.post_id WHERE p.id = $1',
+      [postId]
+    );
+
+    if (postDetails.rows.length === 0) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    res.status(200).json(postDetails.rows[0]);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};

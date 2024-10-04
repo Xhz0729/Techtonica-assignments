@@ -5,11 +5,10 @@ import Login from './components/Login'
 import Register from './components/Register'
 import HomePage from './components/HomePage';
 import Posts from './components/Posts';
+import PostDetails from './components/PostDetails';
 
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <Router>
       <div>
@@ -18,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/posts" element={<Posts />} />
+          <Route path="/post-details/:postId" element={<PostDetails />} />
         </Routes>
       </div>
     </Router>

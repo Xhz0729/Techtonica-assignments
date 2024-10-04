@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -24,6 +26,10 @@ const Posts = () => {
     fetchPosts();
   }, [loggedInUser]);
 
+  const handleViewDetails = (postId) => {
+    navigate(`/post-details/${postId}`);
+  };
+
   return (
     <div>
       <h2>You're logged in as {loggedInUser.username}</h2>
@@ -36,6 +42,7 @@ const Posts = () => {
             <li key={post.id}>
               <h4>{post.title}</h4>
               <p>{post.content}</p>
+              <button onClick={() => handleViewDetails(post.id)}>View Details</button>
             </li>
           ))}
         </ul>
