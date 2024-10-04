@@ -4,6 +4,7 @@ import {
   userLogin,
   getUserPosts,
   getUserPostsDetails,
+  getPostSummary,
 } from "../controller/blog.js";
 const router = express.Router();
 
@@ -19,4 +20,6 @@ router.get("/posts/:userId", getUserPosts);
 // get post details
 router.get("/post-details/:postId", getUserPostsDetails);
 
+// Summarization route
+router.post("/summarize", getPostSummary);
 export default router;

@@ -1,5 +1,9 @@
 import db from "../db/db-connection.js";
 import bcrypt from "bcrypt";
+import OpenAI from "openai";
+
+const openai = new OpenAI();
+
 // register a new user
 export const newUser = async (req, res) => {
   const { username, email, password } = req.body;
@@ -69,16 +73,53 @@ export const getUserPostsDetails = async (req, res) => {
   const { postId } = req.params;
   try {
     const postDetails = await db.query(
-      'SELECT p.title, pd.details, pd.image_url FROM posts p JOIN post_details pd ON p.id = pd.post_id WHERE p.id = $1',
+      "SELECT p.title, pd.details, pd.image_url FROM posts p JOIN post_details pd ON p.id = pd.post_id WHERE p.id = $1",
       [postId]
     );
 
     if (postDetails.rows.length === 0) {
-      return res.status(404).json({ message: 'Post not found' });
+      return res.status(404).json({ message: "Post not found" });
     }
 
     res.status(200).json(postDetails.rows[0]);
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+// Summarize Post Endpoint
+export const getPostSummary = async (req, res) => {
+  const { postId } = req.body;
+
+  try {
+    // Fetch the post content by postId from the database
+    const post = await db.query(
+      "SELECT details FROM post_details WHERE id = $1",
+      [postId]
+    );
+
+    if (post.rows.length === 0) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    const content = post.rows[0].details;
+
+    // Call OpenAI API to summarize the content
+    const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "system", content: "You are a helpful assistant." },
+        {
+          role: "user",
+          content: `Summarize this text: ${content}`,
+        },
+      ],
+    });
+    // Extract the summarized text
+    const summary = completion.choices[0].message.content.trim();
+    res.status(200).json({ summary });
+  } catch (error) {
+    console.error("Error generating summary:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
