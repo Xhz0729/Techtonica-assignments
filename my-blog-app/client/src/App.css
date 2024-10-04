@@ -55,13 +55,7 @@ body {
   background-color: #38a2e9;
 }
 
-/* Center the login form */
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+/* style the login form and register form */
 form {
   background-color: #4682b4;
   padding: 40px;
@@ -108,7 +102,8 @@ form button:hover {
 
 /* Style for error message */
 form p {
-  color: red;
-  font-size: 1.2em;
   margin-top: 12px;
+  font-family: "Bungee Tint", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
