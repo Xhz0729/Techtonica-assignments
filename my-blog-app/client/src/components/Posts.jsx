@@ -31,11 +31,11 @@ const Posts = () => {
   };
 
   return (
-    <div>
+    <div className='posts-container'>
       <h2>You're logged in as {loggedInUser.username}</h2>
       <h3>Your Posts</h3>
       {posts.length === 0 ? (
-        <p>You haven't made any posts yet.</p>
+        <p className='no-posts-message'>You haven't made any posts yet.</p>
       ) : (
         <ul>
           {posts.map(post => (

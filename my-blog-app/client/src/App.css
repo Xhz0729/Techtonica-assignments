@@ -107,3 +107,83 @@ form p {
   font-weight: 400;
   font-style: normal;
 }
+
+/* Style for the posts container */
+.posts-container {
+  width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* User info section */
+.posts-container h2,
+.posts-container h3 {
+  font-size: 2em;
+  color: #4682b4 !important; /* Use !important to force override */
+  margin-bottom: 20px;
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+.posts-container h3 {
+  font-size: 1.2em;
+}
+
+/* Style for posts list */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+/* Add hover effect to lift the post card */
+li:hover {
+  transform: translateY(-5px);
+}
+
+/* Style for post titles */
+li h4 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+/* Style for post content */
+li p {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Style for 'View Details' button */
+li button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+li button:hover {
+  background-color: #2980b9;
+}
+
+/* Style for 'no posts' message */
+.no-posts-message {
+  text-align: center;
+  font-family: "Bungee Tint", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
