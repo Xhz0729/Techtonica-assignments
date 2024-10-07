@@ -25,8 +25,9 @@ const PostDetails = () => {
     fetchPostDetails();
   }, [postId]);
 
-  const handleSummarize = async () => {
+  const handleSummarize = async (e) => {
     setIsSummarizing(true); 
+    e.preventDefault();
     try {
       const response = await fetch('http://localhost:8080/blog/summarize', {
         method: 'POST',
